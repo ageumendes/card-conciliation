@@ -1,0 +1,14 @@
+-- Adiciona coluna de detalhe de erro para compatibilidade com jobs (idempotente)
+EXECUTE BLOCK AS
+BEGIN
+  IF (NOT EXISTS(
+    SELECT 1
+    FROM RDB$RELATION_FIELDS rf
+    WHERE rf.RDB$RELATION_NAME = 'JOB_RUNS'
+      AND TRIM(rf.RDB$FIELD_NAME) = 'ERROR_MESSAGE'
+  )) THEN
+  BEGIN
+    EXECUTE STATEMENT 'ALTER TABLE JOB_RUNS ADD ERROR_MESSAGE VARCHAR(1024)';
+  END
+END
+

@@ -1,0 +1,393 @@
+.tableShell {
+  margin-top: 6px;
+}
+
+.summaryHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.summaryLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.summaryTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.summaryLabel {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.summaryMode {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.previewBadge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #fde68a;
+  color: #92400e;
+  text-transform: uppercase;
+}
+
+.summaryLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  color: #475569;
+}
+
+.summaryLine span {
+  white-space: nowrap;
+}
+
+.summaryStatuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  color: #475569;
+}
+
+.summaryStatuses span {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f1f5f9;
+}
+
+.summaryRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.summaryModes,
+.summaryActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.pendingControlsRow {
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pendingManualGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+}
+
+.pendingScopeGroup {
+  margin-left: auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  max-width: 100%;
+}
+
+.tableShell :global(table) {
+  table-layout: auto;
+  width: max-content;
+}
+
+.tableShell :global(th) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tableShell :global(td) {
+  white-space: nowrap;
+}
+
+.tableShell :global(tbody tr:nth-child(odd)) {
+  background-color: #f9fafb;
+}
+
+.tableShell :global(tbody tr:nth-child(even)) {
+  background-color: #f1f3f5;
+}
+
+.tableShell :global(tbody tr:hover) {
+  background-color: #e9ecef;
+}
+
+.row {
+}
+
+.rowSelected {
+  background: rgba(30, 64, 175, 0.10);
+  outline: 2px solid rgba(30, 64, 175, 0.35);
+  outline-offset: -2px;
+}
+
+.rowSelected:hover {
+  background: rgba(30, 64, 175, 0.12);
+}
+
+.rowSelected td:first-child {
+  position: relative;
+}
+
+.rowSelected td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(30, 64, 175, 0.9);
+  border-radius: 2px;
+}
+
+.rowExpanded td {
+  border-top: 1px solid rgba(30, 64, 175, 0.2);
+}
+
+.detailsCard {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-self: center;
+  max-height: 45vh;
+  overflow: hidden;
+}
+
+.detailsGrid {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.detailsBody {
+  min-height: 0;
+}
+
+.detailsAllFields {
+  margin-top: 12px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+
+.manualMode {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 6px;
+}
+
+.manualPanel {
+  padding: 8px 10px;
+}
+
+.manualHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.manualHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.manualMeta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.manualActionsRow {
+  display: grid;
+  grid-template-columns: 220px 1fr auto;
+  gap: 10px;
+  align-items: end;
+  padding: 6px 10px;
+}
+
+.manualMotivo label,
+.manualObs label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+.manualMotivo select,
+.manualObs input {
+  height: 34px;
+  padding: 6px 10px;
+}
+
+.manualButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .summaryHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summaryRight {
+    align-items: flex-start;
+  }
+
+  .summaryModes,
+  .summaryActions {
+    justify-content: flex-start;
+  }
+
+  .pendingControlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .manualActionsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .manualButtons {
+    justify-content: flex-end;
+  }
+}
+
+.manualTablesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  .manualTablesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tableCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.tableBody {
+  flex: 1;
+  min-height: 0;
+}
+
+:global(.flex.h-full.min-h-0.flex-col.gap-2.overflow-hidden) {
+  row-gap: 4px;
+}
+
+:global(.flex.h-full.min-h-0.flex-col.gap-2.overflow-hidden) :global(.bg-white\/95.backdrop-blur) {
+  margin: 4px 0;
+}
+
+:global(.flex.h-full.min-h-0.flex-col.gap-2.overflow-hidden) :global(.bg-white\/95.backdrop-blur form) {
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+:global(.flex.h-full.min-h-0.flex-col.gap-2.overflow-hidden) :global(.md\:justify-between) {
+  margin: 6px 0;
+}
+
+:global(html[data-theme='dark']) .summaryHeader {
+  border-color: #3b4b61;
+  background: #1f2937;
+}
+
+:global(html[data-theme='dark']) .summaryLabel {
+  color: #8ea4bf;
+}
+
+:global(html[data-theme='dark']) .summaryMode {
+  color: #e2e8f0;
+}
+
+:global(html[data-theme='dark']) .previewBadge {
+  background: #7c5e22;
+  color: #f8e7b8;
+}
+
+:global(html[data-theme='dark']) .summaryLine,
+:global(html[data-theme='dark']) .summaryStatuses,
+:global(html[data-theme='dark']) .manualMeta {
+  color: #a9bbd1;
+}
+
+:global(html[data-theme='dark']) .summaryStatuses span {
+  background: #2a3a4e;
+}
+
+:global(html[data-theme='dark']) .pendingManualGroup {
+  border-color: #4b5e78;
+}
+
+:global(html[data-theme='dark']) .pendingScopeGroup {
+  border-color: #4b5e78;
+}
+
+:global(html[data-theme='dark']) .tableShell :global(tbody tr:nth-child(odd)) {
+  background-color: #223245;
+}
+
+:global(html[data-theme='dark']) .tableShell :global(tbody tr:nth-child(even)) {
+  background-color: #27384c;
+}
+
+:global(html[data-theme='dark']) .tableShell :global(tbody tr:hover) {
+  background-color: #30465f;
+}
