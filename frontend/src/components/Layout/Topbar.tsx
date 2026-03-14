@@ -4,7 +4,6 @@ import clsx from 'clsx';
 const links = [
   { to: '/', label: 'Financeiro' },
   { to: '/reconciliation', label: 'Conciliacao' },
-  { to: '/audit-duplicates', label: 'Auditoria' },
   { to: '/imports', label: 'Importar Arquivos' },
   { to: '/users', label: 'Usuários' },
 ];

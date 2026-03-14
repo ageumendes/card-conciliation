@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchInterdataSales, triggerInterdataReconciliation } from '../api/interdata';
 import { fetchAcquirerSales, fetchAcquirerSalesUnified } from '../api/acquirerImport';
-import { clearAllDev, clearSipagDev } from '../api/maintenance';
 import { StandardTable } from '../components/StandardTable';
 import { ReconciliationFilters, ReconciliationFiltersValues } from '../components/Filters/ReconciliationFilters';
 import { Card } from '../components/common/Card';
@@ -579,36 +578,6 @@ export const Reconciliation = () => {
     onSuccess: () => {
       pendingQuery.refetch();
       acquirerQuery.refetch();
-    },
-  });
-
-  const clearSipagMutation = useMutation({
-    mutationFn: clearSipagDev,
-    onSuccess: () => {
-      setPage(1);
-      setPreviewRows([]);
-      setPreviewActive(false);
-      query.refetch();
-      window.alert('Limpeza SIPAG concluída (DEV).');
-    },
-    onError: (error) => {
-      const message = error instanceof Error ? error.message : 'Falha na limpeza SIPAG';
-      window.alert(message);
-    },
-  });
-
-  const clearAllMutation = useMutation({
-    mutationFn: clearAllDev,
-    onSuccess: () => {
-      setPage(1);
-      setPreviewRows([]);
-      setPreviewActive(false);
-      query.refetch();
-      window.alert('Limpeza total concluída (DEV).');
-    },
-    onError: (error) => {
-      const message = error instanceof Error ? error.message : 'Falha na limpeza total';
-      window.alert(message);
     },
   });
 
@@ -1555,18 +1524,6 @@ export const Reconciliation = () => {
               </div>
               <div className={styles.manualButtons}>
                 <Button
-                  variant="outline"
-                  className="h-8 px-2 py-0 text-[11px]"
-                  onClick={() => {
-                    setSelectedInterdata(null);
-                    setSelectedAcquirer(null);
-                    setManualReason('');
-                    setManualNotes('');
-                  }}
-                >
-                  Limpar
-                </Button>
-                <Button
                   className="h-8 px-2 py-0 text-[11px]"
                   disabled={
                     !selectedInterdata ||
@@ -1871,50 +1828,6 @@ export const Reconciliation = () => {
                       {autoReconWaiting ? 'Aguardando conciliação...' : autoReconciliationLabel}
                     </Button>
                   </div>
-                  {/*isDev && pendingScope === 'SIPAG' ? (
-                    <Button
-                      variant="outline"
-                      className="h-8 border-rose-300 px-2 py-0 text-[11px] text-rose-200 hover:bg-rose-900/20"
-                      title="Limpar tabelas SIPAG (somente DEV)"
-                      disabled={clearSipagMutation.isPending}
-                      onClick={() => {
-                        if (clearSipagMutation.isPending) {
-                          return;
-                        }
-                        const confirmed = window.confirm(
-                          'Limpar dados SIPAG no banco (somente DEV)? Esta ação remove vendas/pagamentos/UR SIPAG para reimportação.',
-                        );
-                        if (!confirmed) {
-                          return;
-                        }
-                        clearSipagMutation.mutate();
-                      }}
-                    >
-                      {clearSipagMutation.isPending ? 'Limpando SIPAG...' : 'Limpar SIPAG (DEV)'}
-                    </Button>
-                  ) : null*/}
-                  {isDev ? (
-                    <Button
-                      variant="outline"
-                      className="h-8 border-rose-300 px-2 py-0 text-[11px] text-rose-200 hover:bg-rose-900/20"
-                      title="Limpar todas as tabelas de dados (somente DEV)"
-                      disabled={clearAllMutation.isPending}
-                      onClick={() => {
-                        if (clearAllMutation.isPending) {
-                          return;
-                        }
-                        const confirmed = window.confirm(
-                          'Limpar TODOS os dados do banco (somente DEV)? Esta ação remove ERP, adquirentes, reconciliações e arquivos importados.',
-                        );
-                        if (!confirmed) {
-                          return;
-                        }
-                        clearAllMutation.mutate();
-                      }}
-                    >
-                      {clearAllMutation.isPending ? 'Limpando...' : 'Limpar'}
-                    </Button>
-                  ) : null}
                 </div>
                 <div className={styles.pendingScopeGroup}>
                   <Button
