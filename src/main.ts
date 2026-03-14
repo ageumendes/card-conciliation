@@ -7,15 +7,22 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
-  const corsOrigins = (process.env.APP_CORS_ORIGIN || 'http://localhost:5173')
+ const corsOrigins = (process.env.APP_CORS_ORIGIN || 'http://localhost:5173')
   .split(',')
-  .map(o => o.trim());
+  .map((o) => o.trim());
 
 app.enableCors({
   origin: corsOrigins,
   credentials: true,
-  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Upload-Id',
+    'Accept',
+    'Origin',
+    'X-Requested-With',
+  ],
 });
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;
   await app.listen(port);
